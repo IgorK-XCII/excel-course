@@ -15,6 +15,7 @@
     height: $row-height;
   }
   .row-info {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -28,6 +29,7 @@
     display: flex;
   }
   .column {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -41,6 +43,7 @@
   }
   .cell {
     min-width: 40px;
+    min-height: 20px;
     padding: 5px;
     width: $cell-width;
     height: 100%;
@@ -52,9 +55,34 @@
 
     &.selected {
       border: none;
-      outline: 2px solid #1a73e8;
+      outline: 2px solid $primary-color;
       outline-offset: -2px;
       z-index: 2;
+    }
+  }
+  .column-resize, .row-resize {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    opacity: 0;
+    background: $primary-color;
+    z-index: 666;
+    &:hover {
+      opacity: 1 !important;
+    }
+  }
+  .column-resize {
+    top: 0;
+    width: 4px;
+    &:hover {
+      cursor: col-resize;
+    }
+  }
+  .row-resize {
+    left: 0;
+    height: 4px;
+    &:hover {
+      cursor: row-resize;
     }
   }
 }
