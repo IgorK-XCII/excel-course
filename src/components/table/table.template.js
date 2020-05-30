@@ -3,18 +3,25 @@ const CODES = {
   Z: 90,
 };
 
-function createCell() {
-  return `<div class="cell" contenteditable></div>`;
+function createCell(_, colIndex) {
+  return `<div class="cell" contenteditable data-column='${colIndex}'></div>`;
 }
 
-function toColumn(el) {
-  return `<div class="column">${el}</div>`;
+function toColumn(el, index) {
+  return `
+      <div class="column" data-type="resizable" data-column='${index}'>
+        ${el}
+        <div class="column-resize" data-resize="column"></div>
+      </div>
+`;
 }
 
 function createRow(content, rowNumber = '') {
   return `
-    <div class="row">
-        <div class="row-info">${rowNumber}</div>
+    <div class="row" data-type="resizable" >
+        <div class="row-info" >${rowNumber}
+            ${rowNumber && '<div class="row-resize" data-resize="row"></div>'}
+        </div>
         <div class="row-data">${content}</div>
     </div>
 `;
@@ -24,7 +31,8 @@ function toChar(_, index) {
 }
 function toCell(index, columnsCount) {
   const cells = new Array(columnsCount)
-      .fill(createCell())
+      .fill('')
+      .map(createCell)
       .join('');
   return createRow(cells, index + 1);
 }
