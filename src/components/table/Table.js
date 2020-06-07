@@ -43,8 +43,7 @@ export class Table extends ExcelComponent {
       resizeHandler(this.$root, event);
     }
     if (isCell(event)) {
-      this.selection.select($(event.target));
-      this.$emit('table:input', this.selection.current.text());
+      this.selectCell($(event.target));
       multipleSelectorHandler(this.$root, this.selection.current, this.selection);
     }
   }
