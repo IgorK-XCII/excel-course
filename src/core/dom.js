@@ -65,6 +65,12 @@ class Dom {
   css(styles = {}) {
     Object.assign(this.$el.style, styles);
   }
+  getStyles(styles = []) {
+    return styles.reduce((sum, style) => {
+      sum[style] = this.$el.style[style];
+      return sum;
+    }, {});
+  }
   id(parse) {
     if (parse) {
       const [row, col] = this.id().split(':');
@@ -74,6 +80,13 @@ class Dom {
       };
     }
     return this.data.id;
+  }
+  attr(name, value) {
+    if (value || value === '') {
+      this.$el.setAttribute(name, value);
+      return this;
+    }
+    return this.$el.getAttribute(name);
   }
   addClass(className) {
     this.$el.classList.add(className);
