@@ -7,4 +7,5 @@ export const defaultState = {
   stylesState: {},
   currentStyles: defaultStyles,
   titleState: defaultTitle,
+  date: Date.now(),
 };

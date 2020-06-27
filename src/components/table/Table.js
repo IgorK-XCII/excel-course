@@ -4,7 +4,6 @@ import {resizeHandler} from '@/components/table/table.resize';
 import {isCell, shouldResize, getNextSelector} from '@/components/table/table.functions';
 import {TableSelection} from '@/components/table/TableSelection';
 import {multipleSelectorHandler} from '@/components/table/table.multyleSelector';
-import {changeText} from '@/redux/actions';
 import {defaultStyles} from '@/constants';
 import {parser} from '@core/parser';
 import {$} from '@core/dom';
@@ -46,6 +45,7 @@ export class Table extends ExcelComponent {
         ids: this.selection.ids,
       }));
     });
+    this.$dispatch(actions.updateDate(Date.now()));
   }
   selectCell($cell) {
     this.selection.select($cell);
@@ -85,7 +85,7 @@ export class Table extends ExcelComponent {
     }
   }
   updateTextInStore(value) {
-    this.$dispatch(changeText({
+    this.$dispatch(actions.changeText({
       id: this.selection.current.id(),
       value,
     }));

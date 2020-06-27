@@ -20,7 +20,7 @@ class Dom {
     return this.$el.textContent;
   }
   clear() {
-    this.html('');
+    this.html(' ');
     return this;
   }
   on(eventType, callback) {
