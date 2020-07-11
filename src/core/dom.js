@@ -3,7 +3,7 @@ class Dom {
     this.$el = typeof selector === 'string' ? document.querySelector(selector) : selector;
   }
   html(html) {
-    if (html) {
+    if (typeof html === 'string') {
       this.$el.innerHTML = html;
       return this;
     }
@@ -20,7 +20,7 @@ class Dom {
     return this.$el.textContent;
   }
   clear() {
-    this.html(' ');
+    this.html('');
     return this;
   }
   on(eventType, callback) {
